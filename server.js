@@ -3,6 +3,14 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 
+// Catch uncaught errors to prevent crashes
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err.message);
+});
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+});
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -24,22 +32,53 @@ function loadState() {
   }
 }
 
+// In production (Railway), state lives only in memory â no disk writes needed
+let saveToDisk = true;
 function saveState(state) {
+  if (!saveToDisk) return;
   try {
     fs.mkdirSync(path.dirname(STATE_FILE), { recursive: true });
     fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
   } catch (e) {
-    console.error('Failed to save state:', e.message);
+    console.warn('Disk write failed, switching to memory-only mode:', e.message);
+    saveToDisk = false; // Stop trying after first failure
   }
 }
 
 function getDefaultState() {
   return {
-    projects: [],
+    projects: [
+      { id: 'tech-ai', name: 'Tech AI', color: '#00e5ff', status: 'idle', activeTaskCount: 0, lastActivity: new Date().toISOString(), links: { youtube: 'https://studio.youtube.com', tiktok: 'https://www.tiktok.com/@techaib3b', channel: 'https://www.youtube.com/channel/UCxn4msQ7h47DNzinVhEioZQ' }, stats: { videos: 38, subs: 5 } },
+      { id: 'groundwork', name: 'Groundwork', color: '#76ff03', status: 'idle', activeTaskCount: 0, lastActivity: new Date().toISOString(), links: { app: 'https://groundwork-production-6720.up.railway.app/', portal: 'https://groundwork-production-6720.up.railway.app/portal', github: 'https://github.com/Mikegearin/job-tracker-sandbox' }, stats: { deploys: 142, uptime: 99.9 } },
+      { id: 'photoflight', name: 'PhotoFlight', color: '#e040fb', status: 'idle', activeTaskCount: 0, lastActivity: new Date().toISOString(), links: { website: 'https://www.photoflightam.com' }, stats: { proposals: 12, region: 'NJ/NY' } },
+      { id: 'groomlab', name: 'GroomLab Creations', color: '#ffab40', status: 'idle', activeTaskCount: 0, lastActivity: new Date().toISOString(), links: { etsy: 'https://www.etsy.com' }, stats: { products: 4, phase: 'launch' } }
+    ],
     activeSessions: [],
-    recentSessions: [],
-    scheduledTasks: [],
-    activityFeed: [],
+    recentSessions: [
+      { id: 's-001', title: 'Mission Control dashboard build', project: 'groundwork', status: 'completed', startedAt: '2026-06-04T14:00:00Z', completedAt: '2026-06-04T15:30:00Z' },
+      { id: 's-002', title: 'PhotoFlight backlink opportunity', project: 'photoflight', status: 'completed', startedAt: '2026-06-04T10:00:00Z', completedAt: '2026-06-04T11:15:00Z' },
+      { id: 's-003', title: 'Ortho mosaic processing', project: 'photoflight', status: 'completed', startedAt: '2026-06-04T09:00:00Z', completedAt: '2026-06-04T09:45:00Z' },
+      { id: 's-004', title: 'New viral video format', project: 'tech-ai', status: 'completed', startedAt: '2026-06-02T11:00:00Z', completedAt: '2026-06-02T13:00:00Z' },
+      { id: 's-005', title: 'Groundwork dev sprint', project: 'groundwork', status: 'completed', startedAt: '2026-06-02T09:00:00Z', completedAt: '2026-06-02T12:00:00Z' }
+    ],
+    scheduledTasks: [
+      { id: 'cron-01', name: 'Morning email triage', schedule: 'Daily 9:01 AM ET', project: null, nextRun: '2026-06-05T13:01:00Z', lastRun: '2026-06-04T13:01:00Z' },
+      { id: 'cron-02', name: 'RFP drone aerial search', schedule: 'Mon + Thu 8:10 AM', project: 'photoflight', nextRun: '2026-06-05T12:10:00Z', lastRun: '2026-06-02T12:10:00Z' },
+      { id: 'cron-03', name: 'Nightly conversation backup', schedule: 'Daily 11:06 PM', project: null, nextRun: '2026-06-05T03:06:00Z', lastRun: '2026-06-04T03:06:00Z' },
+      { id: 'cron-04', name: 'Groundwork daily GitHub push', schedule: 'Daily 7:03 PM', project: 'groundwork', nextRun: '2026-06-04T23:03:00Z', lastRun: '2026-06-03T23:03:00Z' },
+      { id: 'cron-05', name: 'Daily GC prospecting', schedule: 'Mon-Fri 8:06 AM', project: 'groomlab', nextRun: '2026-06-05T12:06:00Z', lastRun: '2026-06-04T12:06:00Z' },
+      { id: 'cron-06', name: 'PhotoFlight daily trends', schedule: 'Daily 7:10 AM', project: 'photoflight', nextRun: '2026-06-05T11:10:00Z', lastRun: '2026-06-04T11:10:00Z' },
+      { id: 'cron-07', name: 'Quotient quotes check', schedule: 'Daily 8:05 AM', project: null, nextRun: '2026-06-05T12:05:00Z', lastRun: '2026-06-04T12:05:00Z' },
+      { id: 'cron-08', name: 'Daily viral content research', schedule: 'Daily 9:06 AM', project: 'tech-ai', nextRun: '2026-06-05T13:06:00Z', lastRun: '2026-06-04T13:06:00Z' },
+      { id: 'cron-09', name: 'RFP drone aerial daily email', schedule: 'Mon-Fri 9:06 AM', project: 'photoflight', nextRun: '2026-06-05T13:06:00Z', lastRun: '2026-06-04T13:06:00Z' }
+    ],
+    activityFeed: [
+      { timestamp: new Date().toISOString(), source: 'SYSTEM', message: 'Mission Control server started', project: null },
+      { timestamp: '2026-06-04T15:30:00Z', source: 'GROUNDWORK', message: 'Mission Control dashboard deployed', project: 'groundwork' },
+      { timestamp: '2026-06-04T13:06:00Z', source: 'TECH_AI', message: 'Viral content research completed â 3 new topics found', project: 'tech-ai' },
+      { timestamp: '2026-06-04T13:01:00Z', source: 'SYSTEM', message: 'Morning email triage â 12 emails processed, 3 flagged', project: null },
+      { timestamp: '2026-06-04T11:15:00Z', source: 'PHOTOFLIGHT', message: 'Backlink opportunity found â 2 high-DA sites contacted', project: 'photoflight' }
+    ],
     stats: { totalProjects: 4, activeTasks: 9, totalSessions: 415, videosPublished: 38, aiCredits: 75000 }
   };
 }
