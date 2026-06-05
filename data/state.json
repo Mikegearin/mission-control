@@ -1,0 +1,97 @@
+{
+  "projects": [
+    {
+      "id": "tech-ai",
+      "name": "Tech AI",
+      "color": "#00e5ff",
+      "status": "idle",
+      "activeTaskCount": 0,
+      "lastActivity": "2026-06-04T13:06:00Z",
+      "links": {
+        "youtube": "https://studio.youtube.com",
+        "tiktok": "https://www.tiktok.com/@techaib3b",
+        "channel": "https://www.youtube.com/channel/UCxn4msQ7h47DNzinVhEioZQ"
+      },
+      "stats": { "videos": 38, "subs": 5 }
+    },
+    {
+      "id": "groundwork",
+      "name": "Groundwork",
+      "color": "#76ff03",
+      "status": "idle",
+      "activeTaskCount": 0,
+      "lastActivity": "2026-06-03T23:03:00Z",
+      "links": {
+        "app": "https://groundwork-production-6720.up.railway.app/",
+        "portal": "https://groundwork-production-6720.up.railway.app/portal",
+        "github": "https://github.com/Mikegearin/job-tracker-sandbox"
+      },
+      "stats": { "deploys": 142, "uptime": 99.9 }
+    },
+    {
+      "id": "photoflight",
+      "name": "PhotoFlight",
+      "color": "#e040fb",
+      "status": "idle",
+      "activeTaskCount": 0,
+      "lastActivity": "2026-06-04T09:06:00Z",
+      "links": {
+        "website": "https://www.photoflightam.com"
+      },
+      "stats": { "proposals": 12, "region": "NJ/NY" }
+    },
+    {
+      "id": "groomlab",
+      "name": "GroomLab Creations",
+      "color": "#ffab40",
+      "status": "idle",
+      "activeTaskCount": 0,
+      "lastActivity": "2026-06-03T08:06:00Z",
+      "links": {
+        "etsy": "https://www.etsy.com"
+      },
+      "stats": { "products": 4, "phase": "launch" }
+    }
+  ],
+  "activeSessions": [],
+  "recentSessions": [
+    { "id": "s-001", "title": "Mission Control dashboard build", "project": "groundwork", "status": "completed", "startedAt": "2026-06-04T14:00:00Z", "completedAt": "2026-06-04T15:30:00Z" },
+    { "id": "s-002", "title": "PhotoFlight backlink opportunity", "project": "photoflight", "status": "completed", "startedAt": "2026-06-04T10:00:00Z", "completedAt": "2026-06-04T11:15:00Z" },
+    { "id": "s-003", "title": "Ortho mosaic processing", "project": "photoflight", "status": "completed", "startedAt": "2026-06-04T09:00:00Z", "completedAt": "2026-06-04T09:45:00Z" },
+    { "id": "s-004", "title": "GroomLab Etsy shop setup", "project": "groomlab", "status": "completed", "startedAt": "2026-06-03T14:00:00Z", "completedAt": "2026-06-03T15:30:00Z" },
+    { "id": "s-005", "title": "New viral video format", "project": "tech-ai", "status": "completed", "startedAt": "2026-06-02T11:00:00Z", "completedAt": "2026-06-02T13:00:00Z" },
+    { "id": "s-006", "title": "Groundwork dev sprint", "project": "groundwork", "status": "completed", "startedAt": "2026-06-02T09:00:00Z", "completedAt": "2026-06-02T12:00:00Z" },
+    { "id": "s-007", "title": "TikTok video uploads batch", "project": "tech-ai", "status": "completed", "startedAt": "2026-06-01T10:00:00Z", "completedAt": "2026-06-01T11:30:00Z" },
+    { "id": "s-008", "title": "Shoreline Aviation promo", "project": "photoflight", "status": "completed", "startedAt": "2026-05-31T09:00:00Z", "completedAt": "2026-05-31T12:00:00Z" }
+  ],
+  "scheduledTasks": [
+    { "id": "cron-01", "name": "Morning email triage", "schedule": "Daily 9:01 AM ET", "cron": "1 9 * * *", "project": null, "nextRun": "2026-06-05T13:01:00Z", "lastRun": "2026-06-04T13:01:00Z" },
+    { "id": "cron-02", "name": "RFP drone aerial search", "schedule": "Mon + Thu 8:10 AM", "cron": "10 8 * * 1,4", "project": "photoflight", "nextRun": "2026-06-05T12:10:00Z", "lastRun": "2026-06-02T12:10:00Z" },
+    { "id": "cron-03", "name": "Nightly conversation backup", "schedule": "Daily 11:06 PM", "cron": "6 23 * * *", "project": null, "nextRun": "2026-06-05T03:06:00Z", "lastRun": "2026-06-04T03:06:00Z" },
+    { "id": "cron-04", "name": "Groundwork daily GitHub push", "schedule": "Daily 7:03 PM", "cron": "3 19 * * *", "project": "groundwork", "nextRun": "2026-06-04T23:03:00Z", "lastRun": "2026-06-03T23:03:00Z" },
+    { "id": "cron-05", "name": "Daily GC prospecting", "schedule": "Mon-Fri 8:06 AM", "cron": "6 8 * * 1-5", "project": "groomlab", "nextRun": "2026-06-05T12:06:00Z", "lastRun": "2026-06-04T12:06:00Z" },
+    { "id": "cron-06", "name": "PhotoFlight daily trends", "schedule": "Daily 7:10 AM", "cron": "10 7 * * *", "project": "photoflight", "nextRun": "2026-06-05T11:10:00Z", "lastRun": "2026-06-04T11:10:00Z" },
+    { "id": "cron-07", "name": "Quotient quotes check", "schedule": "Daily 8:05 AM", "cron": "5 8 * * *", "project": null, "nextRun": "2026-06-05T12:05:00Z", "lastRun": "2026-06-04T12:05:00Z" },
+    { "id": "cron-08", "name": "Daily viral content research", "schedule": "Daily 9:06 AM", "cron": "6 9 * * *", "project": "tech-ai", "nextRun": "2026-06-05T13:06:00Z", "lastRun": "2026-06-04T13:06:00Z" },
+    { "id": "cron-09", "name": "RFP drone aerial daily email", "schedule": "Mon-Fri 9:06 AM", "cron": "6 9 * * 1-5", "project": "photoflight", "nextRun": "2026-06-05T13:06:00Z", "lastRun": "2026-06-04T13:06:00Z" }
+  ],
+  "activityFeed": [
+    { "timestamp": "2026-06-04T15:30:00Z", "source": "GROUNDWORK", "message": "Mission Control dashboard deployed", "project": "groundwork" },
+    { "timestamp": "2026-06-04T13:06:00Z", "source": "TECH_AI", "message": "Viral content research completed â 3 new topics found", "project": "tech-ai" },
+    { "timestamp": "2026-06-04T13:01:00Z", "source": "SYSTEM", "message": "Morning email triage â 12 emails processed, 3 flagged", "project": null },
+    { "timestamp": "2026-06-04T12:06:00Z", "source": "GROOMLAB", "message": "GC prospecting: 5 new potential keywords identified", "project": "groomlab" },
+    { "timestamp": "2026-06-04T11:15:00Z", "source": "PHOTOFLIGHT", "message": "Backlink opportunity found â 2 high-DA sites contacted", "project": "photoflight" },
+    { "timestamp": "2026-06-04T09:45:00Z", "source": "PHOTOFLIGHT", "message": "Ortho mosaic processing complete â delivered to client", "project": "photoflight" },
+    { "timestamp": "2026-06-03T23:06:00Z", "source": "SYSTEM", "message": "Nightly conversation backup â 8 sessions archived", "project": null },
+    { "timestamp": "2026-06-03T23:03:00Z", "source": "GROUNDWORK", "message": "Daily GitHub push â 14 files changed, 2 new features", "project": "groundwork" },
+    { "timestamp": "2026-06-03T15:30:00Z", "source": "GROOMLAB", "message": "Etsy shop draft listing created â awaiting photos", "project": "groomlab" },
+    { "timestamp": "2026-06-02T13:00:00Z", "source": "TECH_AI", "message": "V38 published â new viral format tested", "project": "tech-ai" }
+  ],
+  "stats": {
+    "totalProjects": 4,
+    "activeTasks": 9,
+    "totalSessions": 415,
+    "videosPublished": 38,
+    "aiCredits": 75000
+  }
+}
